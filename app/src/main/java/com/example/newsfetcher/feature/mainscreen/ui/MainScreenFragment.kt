@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.mainscreen.ui
 
+
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,11 +8,15 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfetcher.R
+import com.example.newsfetcher.feature.bookmarks.ui.BookmarksFragment
+import com.google.android.material.datepicker.MaterialCalendar.newInstance
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.net.URLClassLoader.newInstance
 
 
 class MainScreenFragment: Fragment(R.layout.fragment_main_screen) {
@@ -21,13 +26,17 @@ class MainScreenFragment: Fragment(R.layout.fragment_main_screen) {
     private val ivSearch: ImageView by lazy { requireActivity().findViewById(R.id.ivSearch) }
     private val tvTitle: TextView by lazy { requireActivity().findViewById(R.id.tvTitle) }
     private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
+    private val block: ConstraintLayout by lazy { requireActivity().findViewById(R.id.block) }
 
 
     private val adapter: ArticlesAdapter by lazy {
         ArticlesAdapter{ index ->
             viewModel.processUIEvent(UiEvent.OnArticleClicked(index))
+
         }
     }
+
+
 
 
 
@@ -42,6 +51,8 @@ class MainScreenFragment: Fragment(R.layout.fragment_main_screen) {
             viewModel.processUIEvent(UiEvent.OnSearchButtonClicked)
         }
 
+
+
         etSearch.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -54,6 +65,7 @@ class MainScreenFragment: Fragment(R.layout.fragment_main_screen) {
             }
 
         })
+
 
     }
 

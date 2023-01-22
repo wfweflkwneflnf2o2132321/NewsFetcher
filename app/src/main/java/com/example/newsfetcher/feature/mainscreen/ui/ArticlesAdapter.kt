@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfetcher.R
 import com.example.newsfetcher.feature.mainscreen.domain.ArticleModel
@@ -24,6 +25,7 @@ class ArticlesAdapter(val onItemClicked: (Int) ->Unit ) : RecyclerView.Adapter<A
         val tvData: TextView
 
         init {
+
             tvTitle = view.findViewById(R.id.tvTitle)
             tvDescription = view.findViewById(R.id.tvDescription)
             tvData = view.findViewById(R.id.tvData)

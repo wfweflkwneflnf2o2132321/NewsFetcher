@@ -1,11 +1,14 @@
 package com.example.newsfetcher
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.newsfetcher.feature.bookmarks.ui.BookmarksFragment
 import com.example.newsfetcher.feature.mainscreen.ui.MainScreenFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okhttp3.internal.wait
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,11 +16,10 @@ class MainActivity : AppCompatActivity() {
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
-//            .commit()
 
         bottomNavigationMenu.setOnItemSelectedListener {
             when(it.itemId){
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
         bottomNavigationMenu.selectedItemId = R.id.itemMain
+
+
     }
 
 
