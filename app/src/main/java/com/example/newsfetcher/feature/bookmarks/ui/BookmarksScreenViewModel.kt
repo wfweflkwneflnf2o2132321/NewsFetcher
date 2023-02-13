@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
+import com.example.newsfetcher.feature.bookmarks.di.bookmarksModule
 import com.example.newsfetcher.feature.bookmarks.domain.BookmarksInteractor
+import com.example.newsfetcher.feature.mainscreen.domain.ArticleModel
 import kotlinx.coroutines.launch
 
 class BookmarksScreenViewModel(private val interactor: BookmarksInteractor): BaseViewModel<ViewState>() {
@@ -18,6 +20,22 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor): Bas
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
        when(event){
+
+           is UiEvent.OnBookmarkedArticleIconClicked -> {
+               viewModelScope.launch {
+                   interactor.delete(previousState.bookmarksArticle[event.index])
+                   interactor.read().fold(
+                       onError = {
+                           Log.d("MYTAG", "error")
+                       },
+                       onSuccess = {
+                           processDataEvent(DataEvent.LoadBookmarks)
+                       }
+                   )
+               }
+               return null
+           }
+
           is DataEvent.LoadBookmarks ->{
                viewModelScope.launch {
                    interactor.read().fold(

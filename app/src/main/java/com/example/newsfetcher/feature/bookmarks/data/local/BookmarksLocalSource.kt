@@ -10,8 +10,8 @@ class BookmarksLocalSource(private val bookmarksDao: BookmarksDao) {
     }
 
 
-    suspend fun read(): List<BookmarkEntity>{
-       return bookmarksDao.read()
+    suspend fun read(): List<BookmarkEntity> {
+        return bookmarksDao.read()
     }
 
 

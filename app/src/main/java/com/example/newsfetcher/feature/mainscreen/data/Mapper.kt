@@ -10,5 +10,6 @@ fun ArticleRemoteModel.toDoMain() = ArticleModel(
     url = url?: "",
     urlToImage = urlToImage?: "",
     publishedAt = publishedAt?: "",
+    mark = true
 )
 

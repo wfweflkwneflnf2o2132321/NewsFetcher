@@ -7,4 +7,45 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#8CC857</color>
+    <color name="colorPrimaryDark">#256A00</color>
+    <color name="colorAccent">#022300</color>
+
+    <color name="background_light_night">#59B300</color>
+    <color name="background_medium_night">#41780A</color>
+    <color name="background_dark_night">#313631</color>
+
+    <color name="background_light">#E1E1E1</color>
+    <color name="background_medium">#AAAAAA</color>
+    <color name="background_dark">#6A6A6A</color>
+
+    <color name="color_edit_text_background">#67775F</color>
+
+    <color name="black_30">#4D000000</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_100">#000000</color>
+    <color name="white_80">#ccffffff</color>
+    <color name="white_100">#FFFFFF</color>
+
+    <color name="dark_900">#121214</color>
+    <color name="dark_800">#192024</color>
+    <color name="dark_700">#2A3136</color>
+    <color name="dark_600">#34414A</color>
+    <color name="dark_500">#4F4E57</color>
+    <color name="dark_400">#646370</color>
+    <color name="dark_300">#807F8A</color>
+    <color name="dark_200">#87875949</color>
+
+    <color name="grey_900">#828D99</color>
+    <color name="grey_800">#ACAAB2</color>
+    <color name="grey_700">#A5AEB8</color>
+    <color name="grey_600">#CBC9D1</color>
+    <color name="grey_500">#C2CED1</color>
+    <color name="grey_400">#F2F2F2</color>
+    <color name="grey_300">#F4F5F6</color>
+    <color name="grey_200">#F7F7F7</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="light_grey">#BCBCBCBC</color>
 </resources>

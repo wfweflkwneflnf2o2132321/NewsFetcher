@@ -46,7 +46,10 @@ class MainScreenViewModel(private val interactor: ArticlesInteractor, private va
                 viewModelScope.launch{
                     bookmarksInteractor.create(previousState.articlesShown[event.index])
                 }
-                return null
+                val prevList = previousState.articlesList.toMutableList()
+                prevList[event.index].mark = true
+                Log.d("MYTAG changed", "${prevList[event.index].mark}")
+                return previousState.copy(articlesList = prevList, articlesShown = prevList)
             }
 
             is UiEvent.OnSearchButtonClicked ->{

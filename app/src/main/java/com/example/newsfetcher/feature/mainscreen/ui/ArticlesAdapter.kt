@@ -1,16 +1,20 @@
 package com.example.newsfetcher.feature.mainscreen.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfetcher.R
+import com.example.newsfetcher.feature.NewsMoreFragment
 import com.example.newsfetcher.feature.mainscreen.domain.ArticleModel
 
 
-class ArticlesAdapter(val onItemClicked: (Int) ->Unit ) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
+class ArticlesAdapter(private val onItemClicked: (ArticleModel) ->Unit,
+                      private val onIconClicked: (Int) -> Unit
+) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     private var articlesData: List<ArticleModel> = emptyList()
 
@@ -23,12 +27,17 @@ class ArticlesAdapter(val onItemClicked: (Int) ->Unit ) : RecyclerView.Adapter<A
         val tvTitle: TextView
         val tvDescription: TextView
         val tvData: TextView
+        val iv: ImageView
+
 
         init {
 
             tvTitle = view.findViewById(R.id.tvTitle)
             tvDescription = view.findViewById(R.id.tvDescription)
             tvData = view.findViewById(R.id.tvData)
+            iv = view.findViewById(R.id.iv)
+
+
         }
     }
 
@@ -45,14 +54,32 @@ class ArticlesAdapter(val onItemClicked: (Int) ->Unit ) : RecyclerView.Adapter<A
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         viewHolder.itemView.setOnClickListener{
-            onItemClicked(position)
+            onItemClicked(articlesData[position])
         }
+        viewHolder.iv.setOnClickListener {
+            onIconClicked(position)
+        }
+
+
+
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.tvTitle.text = articlesData[position].title
         viewHolder.tvDescription.text = articlesData[position].description
         viewHolder.tvData.text = articlesData[position].publishedAt
+
+
+        if (articlesData[position].mark) {
+            Log.d("MYTAG", "mark = true")
+            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+        } else {
+            //Log.d("MYTAG", "mark = false")
+            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_24)
+
+        }
+
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
