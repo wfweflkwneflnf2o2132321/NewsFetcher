@@ -6,10 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.newsfetcher.R
 import com.example.newsfetcher.feature.NewsMoreFragment
 import com.example.newsfetcher.feature.mainscreen.domain.ArticleModel
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 
 class ArticlesAdapter(private val onItemClicked: (ArticleModel) ->Unit,
@@ -30,12 +36,14 @@ class ArticlesAdapter(private val onItemClicked: (ArticleModel) ->Unit,
         val iv: ImageView
 
 
+
         init {
 
             tvTitle = view.findViewById(R.id.tvTitle)
             tvDescription = view.findViewById(R.id.tvDescription)
             tvData = view.findViewById(R.id.tvData)
             iv = view.findViewById(R.id.iv)
+
 
 
         }
@@ -61,8 +69,6 @@ class ArticlesAdapter(private val onItemClicked: (ArticleModel) ->Unit,
         }
 
 
-
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.tvTitle.text = articlesData[position].title
@@ -72,12 +78,12 @@ class ArticlesAdapter(private val onItemClicked: (ArticleModel) ->Unit,
 
         if (articlesData[position].mark) {
             Log.d("MYTAG", "mark = true")
-            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_24)
         } else {
             //Log.d("MYTAG", "mark = false")
-            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_24)
-
+            viewHolder.iv.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
         }
+
 
 
     }

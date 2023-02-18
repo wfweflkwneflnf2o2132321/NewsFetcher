@@ -43,13 +43,20 @@ class MainScreenViewModel(private val interactor: ArticlesInteractor, private va
             }
 
             is UiEvent.OnArticleClicked ->{
-                viewModelScope.launch{
+//                viewModelScope.launch{
+//                    bookmarksInteractor.create(previousState.articlesShown[event.index])
+//                }
+//                val prevList = previousState.articlesList.toMutableList()
+//                prevList[event.index].mark = true
+//                Log.d("MYTAG changed", "${prevList[event.index].mark}")
+//                return previousState.copy(articlesList = prevList, articlesShown = prevList)
+//            }
+                previousState.articlesList[event.index].mark = true
+                viewModelScope.launch {
                     bookmarksInteractor.create(previousState.articlesShown[event.index])
                 }
-                val prevList = previousState.articlesList.toMutableList()
-                prevList[event.index].mark = true
-                Log.d("MYTAG changed", "${prevList[event.index].mark}")
-                return previousState.copy(articlesList = prevList, articlesShown = prevList)
+                event.adapter.notifyDataSetChanged()
+                return null
             }
 
             is UiEvent.OnSearchButtonClicked ->{

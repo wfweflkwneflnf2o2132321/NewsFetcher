@@ -42,6 +42,8 @@ class MainScreenFragment : androidx.fragment.app.Fragment(R.layout.fragment_main
 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+
+
     viewModel.viewState.observe(viewLifecycleOwner, ::render)
     recyclerView.adapter = adapter
 
@@ -67,7 +69,11 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     })
 
 
+
+
 }
+
+
 
 
 private fun render(viewState: ViewState) {
@@ -79,11 +85,20 @@ private fun render(viewState: ViewState) {
 
 
 private fun processItemClicked(model: ArticleModel) {
-    parentFragmentManager.beginTransaction().replace(R.id.container, NewsMoreFragment(model)).commit()
+    parentFragmentManager
+        .beginTransaction()
+        .add(R.id.container, NewsMoreFragment(model))
+        .addToBackStack(null)
+        .commit()
+
 }
 
+//    private fun processIconClicked(position: Int) {
+//        viewModel.processUIEvent(UiEvent.OnArticleClicked(position))
+//    }
+
     private fun processIconClicked(position: Int) {
-        viewModel.processUIEvent(UiEvent.OnArticleClicked(position))
+        viewModel.processUIEvent(UiEvent.OnArticleClicked(position, adapter))
     }
 
 }

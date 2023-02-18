@@ -36,12 +36,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationMenu.selectedItemId = R.id.itemMain
 
 
-
-
-
-
     }
-
 
     private fun selectTab(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
